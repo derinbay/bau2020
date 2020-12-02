@@ -5,19 +5,26 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.testng.Assert;
+import org.testng.annotations.AfterMethod;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class SmokeTest {
 
+    WebDriver driver = null;
+
     //Open the website
     //assert if im in the homepage
-    @Test
-    public void shouldOpenHomepage() {
+    @BeforeMethod
+    public void startUp() {
         System.setProperty("webdriver.chrome.driver", "/Users/taylan.derinbay/Downloads/chromedriver");
-        WebDriver driver = new ChromeDriver();
+        driver = new ChromeDriver();
+    }
 
+    @Test
+    public void shouldOpenHomepage() throws InterruptedException {
         driver.get("http://www.trendyol.com");
-
+        Thread.sleep(1000);
         WebElement closeButton = driver.findElement(By.className("fancybox-close"));
         closeButton.click();
 
@@ -29,12 +36,16 @@ public class SmokeTest {
         searchBox.sendKeys("samsung");
 
         WebElement searchButton = driver.findElement(By.className("search-icon"));
+        Thread.sleep(1000);
         searchButton.click();
 
         WebElement resultText = driver.findElement(By.className("dscrptn"));
         String result = resultText.getText();
         Assert.assertTrue(result.contains("samsung"));
+    }
 
+    @AfterMethod
+    public void tearDown() {
         driver.quit();
     }
 }
