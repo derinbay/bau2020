@@ -20,4 +20,14 @@ public class SmokeTest extends BaseTest {
         String descriptionText = searchResultPage.getDescriptionText();
         Assert.assertTrue(descriptionText.contains(keyword));
     }
+
+    @Test
+    public void shouldLogin() {
+
+    }
+
+    @Test
+    public void shouldRegister() {
+
+    }
 }
