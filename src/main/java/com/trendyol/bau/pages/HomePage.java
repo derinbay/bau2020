@@ -1,4 +1,4 @@
-package com.trendyol.bau;
+package com.trendyol.bau.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -13,6 +13,7 @@ public class HomePage extends BasePage {
 
     public void redirectHere() {
         driver.get("http://www.trendyol.com");
+        closeEntryPopup();
     }
 
     public void closeEntryPopup() {

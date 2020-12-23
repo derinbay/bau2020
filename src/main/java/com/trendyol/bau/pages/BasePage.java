@@ -1,4 +1,4 @@
-package com.trendyol.bau;
+package com.trendyol.bau.pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
@@ -49,5 +49,10 @@ public class BasePage {
     public void waitForTitle(int timeoutInSeconds, String title) {
         WebDriverWait wait = new WebDriverWait(driver, timeoutInSeconds);
         wait.until(ExpectedConditions.titleIs(title));
+    }
+
+    public LoginPage clickLogin() {
+        clickTo(By.id("accountBtn"), 15);
+        return new LoginPage(driver);
     }
 }
